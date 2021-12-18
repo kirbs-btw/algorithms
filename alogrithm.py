@@ -41,6 +41,7 @@ def twoLayerList(num):
         [0,0,0]
         [0,0,0]
         ]
+    :param n: size of the grid 
 
     """
     arr = list()
@@ -147,6 +148,10 @@ def statistics(fromSize, toSize, count):
     toSize = max array size
 
     count = how many iterations it does per size
+
+    :param fromSize: size where it starts the size of the grid needs to be >2
+    :param toSize: biggest size of the grid
+    :param count: how many times does it test each grid
     """
 
     for f in range(fromSize, toSize):
@@ -160,7 +165,33 @@ def statistics(fromSize, toSize, count):
 
 #####################################################
 
+# random password generator #########################
+
+def generatePassword(length):
+    """
+    generates random password
+    argument = length = len passwort
+
+    :param length: describes lenth of the outcome password
+    :return: returns randompassword depending on the length argument
+
+    """
+
+    dic = "abcdefghijklmnopqrstuvwxyz1234567890.,+=/!&%$§ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    num = len(dic)
+    pw = ""
+
+    for i in range(length):
+        index = random.randint(0, (num - 1))
+        pw = pw + dic[index]
+
+    return pw
+
+######################################################
+
 if __name__ == '__main__':
     # print(bubbleSort(randList(50, 0, 50)))
     statistics(2, 25, 100)
+    #print(generatePassword(25))
+
 # Bastian Lipka
