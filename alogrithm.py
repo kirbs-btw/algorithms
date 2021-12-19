@@ -41,7 +41,7 @@ def twoLayerList(num):
         [0,0,0]
         [0,0,0]
         ]
-    :param n: size of the grid 
+    :param n: size of the grid
 
     """
     arr = list()
@@ -188,10 +188,58 @@ def generatePassword(length):
     return pw
 
 ######################################################
+# random word list generator ######################
+def randomBrutForceDic():
+    """
+
+    :return: list of random strings containing the characters in the list
+    """
+    arr = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+    ]
+
+    wordList = list()
+
+    lenString = 15
+
+    for i in range(70):
+        word = ""
+        for j in range(lenString):
+            word = word + arr[random.randint(0, len(arr) - 1)]
+        wordList.append(word)
+    return wordList
+#################################################################
+
 
 if __name__ == '__main__':
     # print(bubbleSort(randList(50, 0, 50)))
     statistics(2, 25, 100)
     #print(generatePassword(25))
+    #print(randomBrutForceDic())
 
 # Bastian Lipka
