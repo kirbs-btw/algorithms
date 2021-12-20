@@ -235,11 +235,74 @@ def randomBrutForceDic():
     return wordList
 #################################################################
 
+# binary converter ##############################################
+
+def convertFromBinary(f):
+    """
+    :param f:binary input
+    :return: returns real number
+
+    """
+
+    count = 0
+    j = len(str(f))
+
+    for i in str(f):
+        j -= 1
+        if i == "0":
+            pass
+        elif i == "1":
+            add = 2 ** j
+            count = count + add
+
+    return count
+
+
+def convertToBinary(num):
+    """
+    :param num: integer
+    :return: returns binary number as string
+    """
+
+    binaryOut = ""
+
+    # find highest exponent
+    highestExpo = 0
+    j = 0
+    run = True
+    while run:
+        if 2 ** j < num:
+            j += 1
+        elif 2 ** j > num:
+            highestExpo = j - 1
+            run = False
+        elif 2 ** j == num:
+            highestExpo = j
+            run = False
+    ################
+
+    num = num - 2 ** highestExpo
+    binaryOut = binaryOut + "1"
+    rangeInt = highestExpo
+
+    for i in range(rangeInt - 1):
+        highestExpo -= 1
+        if 2 ** highestExpo > num:
+            binaryOut = binaryOut + "0"
+        elif 2 ** highestExpo <= num:
+            binaryOut = binaryOut + "1"
+            num = num - 2 ** highestExpo
+
+    return binaryOut
+
+#################################################################
 
 if __name__ == '__main__':
     # print(bubbleSort(randList(50, 0, 50)))
     statistics(2, 25, 100)
-    #print(generatePassword(25))
-    #print(randomBrutForceDic())
+    # print(generatePassword(25))
+    # print(randomBrutForceDic())
+    # print(convertFromBinary("10101110011"))
+    # print(convertToBinary(1535))
 
 # Bastian Lipka
