@@ -297,6 +297,51 @@ def convertToBinary(num):
 
 #################################################################
 
+# executes simple quadratic function ########################
+def quadraticFuntion(inputstr, min, max, step):
+    """
+    understands x*n+f
+    exp. x*5-1
+    :param step: step value
+    :param max: end value
+    :param min: start value
+    :param inputstr:
+    :return: returns array of nubers in range min to max in steps
+    """
+    #gets constant value
+    constant = ""
+    go = False
+    for i in inputstr:
+        if i == "+" or i == "-":
+            constant += i
+            go = True
+        elif go:
+            constant += i
+
+    #gets n value
+    n = ""
+    go = False
+    for i in inputstr:
+        if i == "*":
+            go = True
+        elif i == "+" or i == "-":
+            go = False
+        elif go:
+            n += i
+
+    values = list()
+
+    #does the function for values
+
+    while min <= max + step:
+        value = min * float(n) + float(constant)
+        values.append(round(value, 5))
+        min += step
+
+    return values
+###########################################################
+
+
 if __name__ == '__main__':
     # print(bubbleSort(randList(50, 0, 50)))
     statistics(2, 25, 100)
