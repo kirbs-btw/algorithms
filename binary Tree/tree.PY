@@ -1,5 +1,11 @@
 import init_Binary
 
+class count:
+    def __init__(self, n, search):
+        self.n = n
+        self.search = search
+obj = count(0, [])
+
 class Node:
     def __init__(self, data):
         self.left = None
@@ -27,6 +33,29 @@ class Node:
             self.right.preOrder()
         print(self.data)
 
+    def count(self):
+        if self.left:
+            self.left.count()
+        if self.right:
+            self.right.count()
+        obj.n += 1
+
+    def find(self):
+        if (len(obj.search) - 1) < obj.n:
+            print(f"data = {self.data}")
+            print(f"left = {self.left.data}")
+            print(f"right = {self.right.data}")
+
+        elif self.left.data == obj.search[obj.n]:
+            obj.n += 1
+            self.left.find()
+
+        elif self.right.data == obj.search[obj.n]:
+            obj.n += 1
+            self.right.find()
+
+        else:
+            print("wrong path")
 
 if __name__ == '__main__':
     init_Binary.main()
