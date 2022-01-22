@@ -41,6 +41,11 @@ class Node:
         obj.n += 1
 
     def find(self):
+        """
+        Search for a leave with a path list []
+        :return:
+        """
+
         if (len(obj.search) - 1) < obj.n:
             print(f"data = {self.data}")
             print(f"left = {self.left.data}")
@@ -58,18 +63,17 @@ class Node:
             print("wrong path")
 
     def invert(self):
-        if self == None:
-            return
-        left = self.left
-        right = self.right
+        """
+        Inverts Binary Tree
+        :return:
+        """
+        self.left, self.right = self.right, self.left
 
-        self.left = right
-        self.right = left
         if self.left != None:
             self.left.invert()
         if self.right != None:
             self.right.invert()
-            
+
 
 
 
