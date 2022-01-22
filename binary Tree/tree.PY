@@ -57,5 +57,21 @@ class Node:
         else:
             print("wrong path")
 
+    def invert(self):
+        if self == None:
+            return
+        left = self.left
+        right = self.right
+
+        self.left = right
+        self.right = left
+        if self.left != None:
+            self.left.invert()
+        if self.right != None:
+            self.right.invert()
+            
+
+
+
 if __name__ == '__main__':
     init_Binary.main()
