@@ -13,6 +13,10 @@ class Node:
         self.data = data
 
     def preOrder(self):
+        """
+        pre Order presentation
+        :return:
+        """
         print(self.data)
         if self.left:
             self.left.preOrder()
@@ -20,6 +24,11 @@ class Node:
             self.right.preOrder()
 
     def inOrder(self):
+        """
+        in Order presentation
+        :return:
+        """
+
         if self.left:
             self.left.preOrder()
         print(self.data)
@@ -27,6 +36,11 @@ class Node:
             self.right.preOrder()
 
     def postOrder(self):
+        """
+        post Order presentation
+        :return:
+        """
+
         if self.left:
             self.left.preOrder()
         if self.right:
@@ -34,6 +48,11 @@ class Node:
         print(self.data)
 
     def count(self):
+        """
+        Counts the number of items in the tree
+        :return:
+        """
+
         if self.left:
             self.left.count()
         if self.right:
