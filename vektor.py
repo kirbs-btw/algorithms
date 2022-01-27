@@ -17,9 +17,7 @@ def calcVector3(vektorA, vektorB):
 
     vektorC = vektor3(c1, c2, c3)
 
-    print(vektorC.x1)
-    print(vektorC.x2)
-    print(vektorC.x3)
+    print([vektorC.x1, vektorC.x2, vektorC.x3])
 
     return vektorC
 
@@ -40,8 +38,9 @@ def main():
     #calc vektor between two
     vektorA = vektor3(1, 0, 3)
     vektorB = vektor3(-10, 4, 2)
-    #calcVector3(vektorA, vektorB)
+    calcVector3(vektorA, vektorB)
 
+    #add two vektors
     addVector3(vektorA, vektorB)
     pass
 
