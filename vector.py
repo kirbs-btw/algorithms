@@ -16,6 +16,12 @@ class vector3:
         print(values)
 
 def sumVector3(vX):
+    """
+    vector sum
+    :param vX: vector
+    :return:
+    """
+
     vSum = math.sqrt(vX.x1 ** 2 + vX.x2 ** 2 + vX.x3 ** 2)
     return vSum
 
@@ -69,6 +75,14 @@ def dotProduct(vA, vB):
     return dotP
 
 def crossProduct(vA, vB):
+    """
+    does the cross product of vector A and vector B
+
+    :param vA:
+    :param vB:
+    :return:
+    """
+
     c1 = vA.x2 * vB.x3 - vA.x3 * vB.x2
     c2 = vA.x3 * vB.x1 - vA.x1 * vB.x3
     c3 = vA.x1 * vB.x2 - vA.x2 * vB.x1
