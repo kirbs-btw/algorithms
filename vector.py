@@ -33,8 +33,6 @@ def calcVector3(vA, vB):
 
     vC = vector3(c1, c2, c3)
 
-    print([vC.x1, vC.x2, vC.x3])
-
     return vC
 
 def addVector3(vA, vB):
@@ -55,21 +53,48 @@ def addVector3(vA, vB):
 
     vC = vector3(c1, c2, c3)
 
-    print([vC.x1, vC.x2, vC.x3])
+    return vC
+
+def dotProduct(vA, vB):
+    """
+    calculates the scalar product of two vector3´s
+    a1 * b1 + a2 * b2 + a3 * b3
+
+    :param vA:
+    :param vB:
+    :return:
+    """
+
+    dotP = (vA.x1 * vB.x1) + (vA.x2 * vB.x2) + (vA.x3 * vB.x3)
+    return dotP
+
+def crossProduct(vA, vB):
+    c1 = vA.x2 * vB.x3 - vA.x3 * vB.x2
+    c2 = vA.x3 * vB.x1 - vA.x1 * vB.x3
+    c3 = vA.x1 * vB.x2 - vA.x2 * vB.x1
+
+    vC = vector3(c1, c2, c3)
+
     return vC
 
 def main():
     #len vector calc
-    vA = vector3(1, 4, 5)
+    vA = vector3(1, 5, 7)
+    vB = vector3(5, -1, 2)
+
+    vA.print()
+
     print(sumVector3(vA))
 
+    print(dotProduct(vA, vB))
+
     #calc vektor between two
-    vA = vector3(1, 0, 3)
-    vB = vector3(-10, 4, 2)
-    calcVector3(vA, vB)
+    calcVector3(vA, vB).print()
 
     #add two vektors
-    addVector3(vA, vB)
+    addVector3(vA, vB).print()
+
+    crossProduct(vA, vB).print()
 
 if __name__ == '__main__':
     main()
