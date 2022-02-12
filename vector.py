@@ -15,6 +15,66 @@ class vector3:
         values = [self.x1, self.x2,  self.x3]
         print(values)
 
+    def vis(self):
+        values = [self.x1, self.x2, self.x3]
+        return values
+
+class plane3param:
+    def __init__(self, supportV3, clampingA, clampingB):
+        self.supportV = supportV3
+        self.clampingA = clampingA
+        self.clampingB = clampingB
+
+    def point(self, r, s):
+        r3 = multiplyVektor3(self.clampingA, r)
+        s3 = multiplyVektor3(self.clampingB, s)
+
+        return addVector3(addVector3(self.supportV, r3), s3)
+
+    def normalVector(self):
+        return crossProduct(self.clampingA, self.clampingB)
+
+    def coordForm(self):
+        normalV = self.normalVector()
+        n = -dotProduct(normalV, self.supportV)
+
+        coordPlane = plane3coord(normalV.x1, normalV.x2, normalV.x3, n)
+        return coordPlane
+
+    def normalForm(self):
+        n = self.normalVector()
+
+        normPlane3 = plane3normal(n, self.supportV)
+        return normPlane3
+
+class plane3coord:
+    def __init__(self, x1, x2, x3, n):
+        """
+        x1 + x2 + x3 = n
+        :param x1:
+        :param x2:
+        :param x3:
+        :param n:
+        """
+        self.x1 = x1
+        self.x2 = x2
+        self.x3 = x3
+        self.n = n
+
+    def print(self):
+        out = f"({self.x1}x1) + ({self.x2}x2) + ({self.x3}x3) = {self.n}"
+        print(out)
+
+class plane3normal:
+    def __init__(self, nV, supportV):
+        self.n = nV
+        self.supportV = supportV
+
+    def print(self):
+        out = f"{self.n.vis()} * (xV - {self.supportV.vis()}) = 0"
+        print(out)
+
+
 def sumVector3(vX):
     """
     vector sum
@@ -24,6 +84,24 @@ def sumVector3(vX):
 
     vSum = math.sqrt(vX.x1 ** 2 + vX.x2 ** 2 + vX.x3 ** 2)
     return vSum
+
+def multiplyVektor3(vA, n):
+    """
+    multiply vector with number
+    returns new vector does not deform old one
+    :param vA: vector
+    :param n: multiplier --> float or int no vektor
+    :return: vector * multiplier
+    """
+    a1 = vA.x1 * n
+    a2 = vA.x2 * n
+    a3 = vA.x3 * n
+
+    vB = vector3(a1, a2, a3)
+
+    return vB
+
+
 
 def calcVector3(vA, vB):
     """
@@ -91,6 +169,26 @@ def crossProduct(vA, vB):
 
     return vC
 
+def doPlane():
+    sup3 = vector3(0, 1, 5)
+    clap3A = vector3(5, 7,1)
+    clap3B = vector3(2, -1, 2)
+
+
+    plane = plane3param(sup3, clap3A, clap3B)
+
+    newPoint = plane.point(4, 2)
+    newPoint.print()
+
+    newPoint = plane.normalVector()
+    newPoint.print()
+
+    coordPlane = plane.coordForm()
+    coordPlane.print()
+
+    normalPlane = plane.normalForm()
+    normalPlane.print()
+    
 def main():
     #len vector calc
     vA = vector3(1, 5, 7)
@@ -111,4 +209,4 @@ def main():
     crossProduct(vA, vB).print()
 
 if __name__ == '__main__':
-    main()
+    doPlane()
