@@ -1,6 +1,6 @@
 
 def run():
-    for i in range(9999, 99999999999999):
+    for i in range(0, 99999999999999):
         #print(i)
         main(i)
 
@@ -20,6 +20,10 @@ def findExponent(num, len):
     return exponent
 
 def main(num):
+	"""
+	char = the set of characters that are used add some to get more 
+	
+	"""
     char = "abcdefghijklmnopqrstuvwxyz"
     highestExponent = findExponent(num, len(char))
     exponent = highestExponent
