@@ -1,18 +1,16 @@
 def getData():
     dataSet = [
-        [3, 4, 5, None, 4, 3, 2],
+        [3, 4, 5, None, 4, None, 2],
         [3, 3, None, None, 4, 3, 2],
         [1, 1, None, 1, 1, 2, None]
     ]
 
     return dataSet
 
-def getDiff(dataSet):
+def getDiff(userData, workSet):
     diffSet = []
 
-    userData = dataSet[0]
-    workSet = dataSet
-    workSet.remove(userData)
+
 
     """
     userData is the data of our user 
@@ -43,10 +41,20 @@ def getAvgDiff(diffSet):
             if item != None:
                 sum += item
                 count += 1
-        avgSet.append(sum / (count**2))
+        avgSet.append(round(sum / (count**2), 5))
     return avgSet
 
+def predict(workData, avgDiff):
+    dataPoint = 5
 
+    sumWData = 0
+    sumW = 0
+    for index, item in enumerate(avgDiff):
+        if workData[index][dataPoint] != None:
+            sumW += item
+            sumWData += item * workData[index][dataPoint]
+
+    return sumWData/sumW
 
 def main():
     """
@@ -55,9 +63,18 @@ def main():
     :return:
     """
 
-    diff = getDiff(getData())
+    dataSet = getData()
+
+    #
+    userData = dataSet[0]
+    workSet = dataSet
+    workSet.remove(userData)
+    #
+
+    diff = getDiff(userData, workSet)
     avgDiff = getAvgDiff(diff)
-    
+
+    print(predict(workSet, avgDiff))
     print(diff)
     print(avgDiff)
 
