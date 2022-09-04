@@ -1,4 +1,15 @@
+import sqlite3
+
 def getData():
+    conn = sqlite3.connect("data.sjql")
+    cur = conn.cursor()
+    dataSet = cur.execute("SELECT * FROM data").fetchall()
+    return dataSet
+
+"""
+def getData():
+        
+    
     dataSet = [
         [3, 4, 5, None, 4, None, 2],
         [3, 3, None, None, 4, 3, 2],
@@ -6,6 +17,8 @@ def getData():
     ]
 
     return dataSet
+"""
+
 
 def getDiff(userData, workSet):
     diffSet = []
