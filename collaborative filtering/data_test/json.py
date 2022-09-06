@@ -1,5 +1,8 @@
 import json
 
+def createJson():
+    f = open("data.json", "w+")
+
 def main():
     data = {
         "a":4,
