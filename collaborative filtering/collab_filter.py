@@ -1,23 +1,9 @@
-import sqlite3
+import json
 
 def getData():
-    conn = sqlite3.connect("data.sjql")
-    cur = conn.cursor()
-    dataSet = cur.execute("SELECT * FROM data").fetchall()
-    return dataSet
+    with open('data.json') as file:
+        return json.load(file)['data']
 
-"""
-def getData():
-        
-    
-    dataSet = [
-        [3, 4, 5, None, 4, None, 2],
-        [3, 3, None, None, 4, 3, 2],
-        [1, 1, None, 1, 1, 2, None]
-    ]
-
-    return dataSet
-"""
 
 
 def getDiff(userData, workSet):
@@ -36,9 +22,9 @@ def getDiff(userData, workSet):
     for user in workSet:
         diffArr = []
         for index, item in enumerate(user):
-            if userData[index] != None and item != None:
+            try:
                 diffArr.append(userData[index] - item)
-            else:
+            except:
                 diffArr.append(None)
         diffSet.append(diffArr)
 
@@ -51,9 +37,11 @@ def getAvgDiff(diffSet):
         sum = 0
         count = 0
         for item in userDiff:
-            if item != None:
+            try:
                 sum += item
                 count += 1
+            except:
+                pass
         avgSet.append(round(sum / (count**2), 5))
     return avgSet
 
@@ -63,10 +51,11 @@ def predict(workData, avgDiff):
     sumWData = 0
     sumW = 0
     for index, item in enumerate(avgDiff):
-        if workData[index][dataPoint] != None:
+        try:
             sumW += item
             sumWData += item * workData[index][dataPoint]
-
+        except:
+            pass
     return sumWData/sumW
 
 def main():
@@ -77,6 +66,7 @@ def main():
     """
 
     dataSet = getData()
+    print(dataSet)
 
     #
     userData = dataSet[0]
