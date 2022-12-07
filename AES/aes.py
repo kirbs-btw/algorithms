@@ -17,11 +17,10 @@ class data:
                 self.matrix.append(arr)
                 arr = []
 
-
 def aes(data):
     subData(data)
     shiftData(data)
-    # mixData(data)
+    mixData(data)
     # keyAddData(data)
 
 def subData(data):
@@ -41,6 +40,39 @@ def shiftData(data):
         result.append(arr)
 
     print(result)
+
+def convertData(data):
+    x = data
+    for i, row in enumerate(x):
+        for j, char in enumerate(row):
+            x[i][j] = ord(char)
+    return x
+
+def mixData(data):
+    x = convertData(data.matrix)
+    y = [
+        [1, 2, 3, 4],
+        [4, 5, 6, 7],
+        [7, 8, 9, 10],
+        [11, 12, 13, 14]
+    ]
+
+    result = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ]
+
+    for i in range(len(x)):
+        for j in range(len(y[0])):
+            for k in range(len(y)):
+                result[i][j] += x[i][k] * y[k][j]
+
+    print(result)
+
+
+    pass
 
 text = "hello sir ballzz"
 dataObj = data()
