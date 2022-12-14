@@ -24,11 +24,14 @@ def aes(data):
     # keyAddData(data)
 
 def subData(data):
-    for a, f in enumerate(data.matrix):
-        for b, l in enumerate(f):
-            data.matrix[a][b] = lookupTable.lookupTable[l]
+    for indexI, i in enumerate(data.matrix):
+        for indexJ, j in enumerate(i):
+            #
+            data.matrix[indexI][indexJ] = chr(ord(j) + 2)
 
-    print(data.matrix)
+    for i in data.matrix:
+        print(i)
+    print()
 
 def shiftData(data):
     result = []
@@ -39,7 +42,11 @@ def shiftData(data):
             arr.append(row[i - shift])
         result.append(arr)
 
-    print(result)
+    for i in result:
+        print(i)
+    print()
+
+    data.matrix = result
 
 def convertData(data):
     x = data
@@ -50,6 +57,7 @@ def convertData(data):
 
 def mixData(data):
     x = convertData(data.matrix)
+
     y = [
         [1, 2, 3, 4],
         [4, 5, 6, 7],
@@ -69,13 +77,18 @@ def mixData(data):
             for k in range(len(y)):
                 result[i][j] += x[i][k] * y[k][j]
 
-    print(result)
+    data.matrix = result
 
-
-    pass
+    for i in result:
+        print(i)
+    print()
 
 text = "hello sir ballzz"
 dataObj = data()
 dataObj.convertToData(text)
-print(dataObj.matrix)
+
+for i in dataObj.matrix:
+    print(i)
+print()
+
 aes(dataObj)
