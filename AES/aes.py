@@ -79,9 +79,17 @@ def mixData(data):
 
     data.matrix = result
 
+    convertMatrixToChar(data)
+
     for i in result:
         print(i)
     print()
+
+def convertMatrixToChar(data):
+    for row, i in enumerate(data.matrix):
+        for col, j in enumerate(i):
+            data.matrix[row][col] = chr(j%256)
+
 
 text = "hello sir ballzz"
 dataObj = data()
